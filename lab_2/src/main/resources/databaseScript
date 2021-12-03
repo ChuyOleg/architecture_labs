@@ -1,0 +1,75 @@
+CREATE DATABASE auction;
+
+CREATE TABLE IF NOT EXISTS employee(
+    employee_id serial Primary Key,
+    first_name varchar(64) NOT NULL,
+    last_name varchar(64) NOT NULL,
+    email varchar(128) NOT NULL,
+    password varchar(64) NOT NULL,
+    tax_number varchar(64) NOT NULL,
+    position varchar(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS sellerInfo(
+    seller_info_id serial Primary Key,
+    payment_info text NOT NULL,
+    tax_number varchar(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS person(
+    person_id serial PRIMARY KEY,
+    first_name varchar(64) NOT NULL,
+    last_name varchar(64) NOT NULL,
+    email varchar(128) NOT NULL,
+    password varchar(64) NOT NULL,
+    seller_info_id int REFERENCES sellerInfo(seller_info_id)
+);
+
+CREATE TABLE IF NOT EXISTS deliveryType(
+    delivery_type_id serial PRIMARY KEY,
+    delivery_type_value varchar(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS saleType(
+    sale_type_id serial PRIMARY KEY,
+    sale_type_value varchar(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS product(
+    product_id serial PRIMARY KEY,
+    title varchar(128) NOT NULL,
+    description text,
+    price float NOT NULL,
+    category varchar(64) NOT NULL,
+    sale_type_id int REFERENCES saleType(sale_type_id) NOT NULL,
+    start_date date,
+    end_date date,
+    delivery_type_id int REFERENCES deliveryType(delivery_type_id) NOT NULL,
+    delivery_price int NOT NULL,
+    delivery_time_days int NOT NULL,
+    seller_id int REFERENCES person(person_id) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS rate(
+    rate_id serial PRIMARY KEY,
+    product_id int REFERENCES product(product_id) NOT NULL,
+    customer_id int REFERENCES person(person_id) NOT NULL,
+    rate_value float NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS address(
+    address_id serial PRIMARY KEY,
+    country varchar(64) NOT NULL,
+    region varchar(64) NOT NULL,
+    city varchar(64) NOT NULL,
+    postal_code varchar(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS contract(
+    contract_id serial PRIMARY KEY,
+    product_id int REFERENCES product(product_id) NOT NULL,
+    employee_id int REFERENCES employee(employee_id) NOT NULL,
+    address_id int REFERENCES address(address_id) NOT NULL,
+    contract_date date NOT NULL
+);
+
