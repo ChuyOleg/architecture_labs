@@ -27,7 +27,6 @@ public class CatalogProductPage extends PageChainBase {
             List<Product> supplier1Products = GetDataFromSuppliers.getSupplier1Data(params);
             List<Product> supplier2Products = GetDataFromSuppliers.getSupplier2Data(params);
 
-
             String queryWithRule = ServletUtils.buildQueryWithFilter(params);
             params.put("queryWithFilter", queryWithRule);
 
