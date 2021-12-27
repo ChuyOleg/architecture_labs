@@ -1,0 +1,40 @@
+type Mutation {
+    createProduct(
+        title: String!,
+        description: String,
+        category: String!,
+        price: Int!,
+        saleType: String!,
+        startDate: String,
+        endDate: String,
+        deliveryType: String
+        deliveryPrice: Int,
+        deliveryTimeDays: Int,
+        sellerId: Int!
+    ): Product
+
+    updateProduct(
+        productId: Int!,
+        title: String,
+        description: String,
+        category: String,
+        price: Int,
+        saleType: String,
+        startDate: String,
+        endDate: String,
+        deliveryType: String
+        deliveryPrice: Int,
+        deliveryTimeDays: Int,
+        sellerId: Int
+    ): Product
+
+    deleteProduct(
+        productId: Int!
+    ): Product
+
+    createOrder(
+        productId: Int!,
+        supplier: Int!,
+        customerId: Int!
+    ): Order
+}
