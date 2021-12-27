@@ -1,0 +1,10 @@
+type Query {
+    products: [Product]
+    product(id: ID): Product
+
+    persons: [Person]
+    person(id: ID): Person
+
+    orders: [Order]
+    order(id: ID): Order
+}

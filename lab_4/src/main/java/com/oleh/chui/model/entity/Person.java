@@ -23,10 +23,10 @@ public class Person {
     private Long personId;
 
     @NotNull
-    private String first_name;
+    private String firstName;
 
     @NotNull
-    private String last_name;
+    private String lastName;
 
     @NotNull
     private String email;

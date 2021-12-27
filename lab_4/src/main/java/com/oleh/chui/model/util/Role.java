@@ -1,7 +1,7 @@
 package com.oleh.chui.model.util;
 
 public enum Role {
-    USER,
+    CUSTOMER,
     SELLER;
 
     private String value;

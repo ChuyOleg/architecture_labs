@@ -1,0 +1,14 @@
+type Product {
+    productId: ID!,
+    title: String!,
+    description: String,
+    category: String!,
+    price: Int!,
+    saleType: String,
+    startDate: String,
+    endDate: String,
+    deliveryType: String,
+    deliveryPrice: Int,
+    deliveryTimeDays: Int,
+    seller: Person!
+}
